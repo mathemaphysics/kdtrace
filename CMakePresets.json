@@ -1,0 +1,79 @@
+{
+    "version": 3,
+    "cmakeMinimumRequired": {
+        "major": 3,
+        "minor": 16,
+        "patch": 0
+    },
+    "configurePresets": [
+	{
+            "name": "kdtrace-release-configure",
+            "displayName": "Unix Makefiles Release Configuration",
+            "description": "Release configuration using Unix Makefiles generator",
+            "generator": "Unix Makefiles",
+            "binaryDir": "${sourceDir}/build/${presetName}",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release",
+                "FETCHCONTENT_QUIET": "FALSE",
+                "GIT_PROGRESS": "TRUE",
+                "BUILD_TESTING": "TRUE"
+            }
+	},
+	{
+            "name": "kdtrace-debug-configure",
+            "displayName": "Unix Makefiles Debug Configuration",
+            "description": "Debug configuration using Unix Makefiles generator",
+            "generator": "Unix Makefiles",
+            "binaryDir": "${sourceDir}/build/${presetName}",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release",
+                "FETCHCONTENT_QUIET": "FALSE",
+                "GIT_PROGRESS": "TRUE",
+                "BUILD_TESTING": "TRUE"
+            }
+	}
+    ],
+    "buildPresets": [
+        {
+            "name": "kdtrace-release-build",
+            "displayName": "Unix Makefiles Release Build",
+            "description": "Release build using Unix Makefiles generator",
+            "configurePreset": "kdtrace-release-configure"
+        },
+        {
+            "name": "kdtrace-debug-build",
+            "displayName": "Unix Makefiles Debug Build",
+            "description": "Debug build using Unix Makefiles generator",
+            "configurePreset": "kdtrace-debug-configure"
+        }
+    ],
+    "testPresets": [
+        {
+            "name": "kdtrace-release-test",
+            "displayName": "Unix Makefiles Release Test",
+            "description": "Release test using Unix Makefiles generator",
+            "configurePreset": "kdtrace-release-configure",
+            "output": {
+                "outputOnFailure": true
+            },
+            "execution": {
+                "noTestsAction": "error",
+                "stopOnFailure": true
+            }
+        },
+        {
+            "name": "kdtrace-debug-test",
+            "displayName": "Unix Makefiles Debug Test",
+            "description": "Debug test using Unix Makefiles generator",
+            "configurePreset": "kdtrace-debug-configure",
+            "output": {
+                "outputOnFailure": true
+            },
+            "execution": {
+                "noTestsAction": "error",
+                "stopOnFailure": true
+            }
+        }
+    ]
+}
+
